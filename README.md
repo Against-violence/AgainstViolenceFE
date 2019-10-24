@@ -1,4 +1,5 @@
 # AgainstViolenceFE
+如何启动项目
 
  * **step 1、 cd AgainstViolenceFE文件夹**  
  * **step 2、 npm install**  
@@ -30,4 +31,6 @@
 采用[oocss](http://oocss.org/)规则，中文的介绍请看[这里](https://www.w3cplus.com/css/oocss-concept)
 
 ****
-请参加项目的前端小组
+**本项目使用Element UI框架，由饿了吗前端团队开发和维护，在大量的中小企业及个人开发者中使用。**  
+  
+[框架文档网址](https://element.eleme.cn/#/zh-CN/component/installation)
