@@ -1,12 +1,11 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar class="sidebar-container" />
+    <!-- <sidebar class="sidebar-container" /> -->
     <div class="main-container">
-      <div :class="{'fixed-header':fixedHeader}">
-        <navbar />
-      </div>
-      <app-main />
+      <navbar class="heightFix" />
+      <app-main class="heightFull" />
+      <footer class="heightFix">2019-2019 棒棒团 版权所有</footer>
     </div>
   </div>
 </template>
@@ -63,6 +62,21 @@ export default {
       position: fixed;
       top: 0;
     }
+  }
+  .heightFix {
+    flex: 0 0 auto;
+  }
+  .heightFull {
+    flex: 1 1 auto;
+  }
+  footer {
+    height: 60px;
+    background-color: #545c64;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
   }
   .drawer-bg {
     background: #000;
