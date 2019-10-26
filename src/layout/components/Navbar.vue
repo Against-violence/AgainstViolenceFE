@@ -1,8 +1,5 @@
 <template>
   <div>
-    <!-- <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" /> -->
-    
-    <!-- <breadcrumb class="breadcrumb-container" /> -->
     <el-menu
       class="navbar"
       :default-active="activeIndex"
@@ -48,13 +45,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import Breadcrumb from '@/components/Breadcrumb'
-// import Hamburger from '@/components/Hamburger'
 
 export default {
   components: {
-    // Breadcrumb,
-    // Hamburger
   },
   data() {
     return {
@@ -85,7 +78,6 @@ export default {
 <style lang="scss" scoped>
 .navbar {
   height: 60px;
-  // overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -116,9 +108,6 @@ export default {
     }
   }
   .hamburger-container {
-    // line-height: 46px;
-    // height: 100%;
-    // float: left;
     cursor: pointer;
     transition: background .3s;
     -webkit-tap-highlight-color:transparent;
@@ -133,10 +122,6 @@ export default {
   }
 
   .right-menu {
-    // float: right;
-    // height: 100%;
-    // line-height: 50px;
-
     &:focus {
       outline: none;
     }
