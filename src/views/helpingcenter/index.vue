@@ -1,110 +1,110 @@
 <template>
-<div class="hc-container">
+  <div class="hc-container">
     <div class="hc-posts">
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="全部" name="all">
-              <div class="hc-post-layout" v-for="post in posts" :key="post.id">
-                <div class="hc-post-item">
-                  <div class="left-section">
-                    <h3>{{ post.title }}</h3>
-                    <span>求助内容: {{ post.content }}</span>
-                    <div class="post-info">
-                      <span>区域: {{ post.region }}</span>
-                      <span>发布人: {{ post.author }}</span>
-                    </div>
-                  </div>
-                  <div class="right-section">
-                    <el-button type="primary">查看详情</el-button>
-                  </div>
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="全部" name="all">
+          <div v-for="post in posts" :key="post.id" class="hc-post-layout">
+            <div class="hc-post-item">
+              <div class="left-section">
+                <h3>{{ post.title }}</h3>
+                <span>求助内容: {{ post.content }}</span>
+                <div class="post-info">
+                  <span>区域: {{ post.region }}</span>
+                  <span>发布人: {{ post.author }}</span>
                 </div>
-                <el-divider></el-divider>
               </div>
-            </el-tab-pane>
-            <el-tab-pane label="待认证" name="inAuth">
-              <div class="hc-post-layout" v-for="post in inAuthPosts" :key="post.id">
-                <div class="hc-post-item">
-                  <div class="left-section">
-                    <h3>{{ post.title }}</h3>
-                    <span>求助内容: {{ post.content }}</span>
-                    <div class="post-info">
-                      <span>区域: {{ post.region }}</span>
-                      <span>发布人: {{ post.author }}</span>
-                    </div>
-                  </div>
-                  <div class="right-section">
-                    <el-button type="primary">查看详情</el-button>
-                  </div>
+              <div class="right-section">
+                <el-button type="primary">查看详情</el-button>
+              </div>
+            </div>
+            <el-divider />
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="待认证" name="inAuth">
+          <div v-for="post in inAuthPosts" :key="post.id" class="hc-post-layout">
+            <div class="hc-post-item">
+              <div class="left-section">
+                <h3>{{ post.title }}</h3>
+                <span>求助内容: {{ post.content }}</span>
+                <div class="post-info">
+                  <span>区域: {{ post.region }}</span>
+                  <span>发布人: {{ post.author }}</span>
                 </div>
-                <el-divider></el-divider>
               </div>
-            </el-tab-pane>
-            <el-tab-pane label="待处理" name="inProcess">
-              <div class="hc-post-layout" v-for="post in inProcessPosts" :key="post.id">
-                <div class="hc-post-item">
-                  <div class="left-section">
-                    <h3>{{ post.title }}</h3>
-                    <span>求助内容: {{ post.content }}</span>
-                    <div class="post-info">
-                      <span>区域: {{ post.region }}</span>
-                      <span>发布人: {{ post.author }}</span>
-                    </div>
-                  </div>
-                  <div class="right-section">
-                    <el-button type="primary">查看详情</el-button>
-                  </div>
+              <div class="right-section">
+                <el-button type="primary">查看详情</el-button>
+              </div>
+            </div>
+            <el-divider />
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="待处理" name="inProcess">
+          <div v-for="post in inProcessPosts" :key="post.id" class="hc-post-layout">
+            <div class="hc-post-item">
+              <div class="left-section">
+                <h3>{{ post.title }}</h3>
+                <span>求助内容: {{ post.content }}</span>
+                <div class="post-info">
+                  <span>区域: {{ post.region }}</span>
+                  <span>发布人: {{ post.author }}</span>
                 </div>
-                <el-divider></el-divider>
               </div>
-            </el-tab-pane>
-            <el-tab-pane label="处理中" name="processing">
-              <div class="hc-post-layout" v-for="post in processingPosts" :key="post.id">
-                <div class="hc-post-item">
-                  <div class="left-section">
-                    <h3>{{ post.title }}</h3>
-                    <span>求助内容: {{ post.content }}</span>
-                    <div class="post-info">
-                      <span>区域: {{ post.region }}</span>
-                      <span>发布人: {{ post.author }}</span>
-                    </div>
-                  </div>
-                  <div class="right-section">
-                    <el-button type="primary">查看详情</el-button>
-                  </div>
+              <div class="right-section">
+                <el-button type="primary">查看详情</el-button>
+              </div>
+            </div>
+            <el-divider />
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="处理中" name="processing">
+          <div v-for="post in processingPosts" :key="post.id" class="hc-post-layout">
+            <div class="hc-post-item">
+              <div class="left-section">
+                <h3>{{ post.title }}</h3>
+                <span>求助内容: {{ post.content }}</span>
+                <div class="post-info">
+                  <span>区域: {{ post.region }}</span>
+                  <span>发布人: {{ post.author }}</span>
                 </div>
-                <el-divider></el-divider>
               </div>
-            </el-tab-pane>
-        </el-tabs>
+              <div class="right-section">
+                <el-button type="primary">查看详情</el-button>
+              </div>
+            </div>
+            <el-divider />
+          </div>
+        </el-tab-pane>
+      </el-tabs>
     </div>
     <div class="hc-form">
-    <h3>快速发布求助信息</h3>
-    <el-form :rules="rules" ref="hcForm" label-position="top" label-width="80px" :model="hcPostForm">
+      <h3>快速发布求助信息</h3>
+      <el-form ref="hcForm" :rules="rules" label-position="top" label-width="80px" :model="hcPostForm">
         <el-form-item prop="title" label="求助标题">
-            <el-input v-model="hcPostForm.title"></el-input>
+          <el-input v-model="hcPostForm.title" />
         </el-form-item>
         <el-form-item prop="content" label="求助内容">
-            <el-input type="textarea" :rows="7" v-model="hcPostForm.content"></el-input>
+          <el-input v-model="hcPostForm.content" type="textarea" :rows="7" />
         </el-form-item>
         <el-form-item prop="region" label="所在区域">
-            <el-select v-model="hcPostForm.region" placeholder="请选择所在区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
+          <el-select v-model="hcPostForm.region" placeholder="请选择所在区域">
+            <el-option label="区域一" value="shanghai" />
+            <el-option label="区域二" value="beijing" />
+          </el-select>
         </el-form-item>
         <el-form-item prop="detailedAddr" label="详细地址">
-            <el-input v-model="hcPostForm.detailedAddr"></el-input>
+          <el-input v-model="hcPostForm.detailedAddr" />
         </el-form-item>
         <el-form-item prop="contactPerson" label="联系人">
-            <el-input v-model="hcPostForm.contactPerson"></el-input>
+          <el-input v-model="hcPostForm.contactPerson" />
         </el-form-item>
         <el-form-item prop="contactDetail" label="联系方式">
-            <el-input v-model="hcPostForm.contactDetail"></el-input>
+          <el-input v-model="hcPostForm.contactDetail" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('hcForm')">提交</el-button>
           <el-button @click="resetForm('hcForm')">重置</el-button>
         </el-form-item>
-    </el-form>
+      </el-form>
     </div>
   </div>
 </template>
@@ -114,19 +114,19 @@ import { mapGetters } from 'vuex'
 import './overwrite.css'
 export default {
   name: 'Helpingcenter',
-  data () {
+  data() {
     return {
       activeName: 'all',
       labelPosition1: 'top',
       labelPosition2: 'left',
       hcPostForm: {
-          title: '',
-          content: '',
-          region: '',
-          detailedAddr: '',
-          contactPerson: '',
-          contactDetail: ''
-        },
+        title: '',
+        content: '',
+        region: '',
+        detailedAddr: '',
+        contactPerson: '',
+        contactDetail: ''
+      },
       rules: {
         title: [
           { required: true, message: '请输入求助标题', trigger: 'blur' },
@@ -153,7 +153,7 @@ export default {
         ]
       },
       posts: [
-        { 
+        {
           id: 1,
           title: '我天天被欺负',
           content: '我天天被欺负，真的好无奈，我该怎么办呢？',
@@ -164,7 +164,7 @@ export default {
           author: '校长',
           status: 'inAuth'
         },
-        { 
+        {
           id: 2,
           title: '被揍了',
           content: '谁能替我报仇',
@@ -175,7 +175,7 @@ export default {
           author: '校长',
           status: 'inAuth'
         },
-        { 
+        {
           id: 3,
           title: '找大佬',
           content: '我天天被欺负，找大佬罩我',
@@ -186,7 +186,7 @@ export default {
           author: '校长',
           status: 'inAuth'
         },
-        { 
+        {
           id: 4,
           title: '老师也欺负我',
           content: '这是我没想到的，大人也不全是好人',
@@ -197,7 +197,7 @@ export default {
           author: '校长',
           status: 'inProcess'
         },
-        { 
+        {
           id: 5,
           title: '到底该说不该说',
           content: '被班长欺负，人面兽心',
@@ -208,7 +208,7 @@ export default {
           author: '校长',
           status: 'inProcess'
         },
-        { 
+        {
           id: 6,
           title: '不敢说',
           content: '这里会是一个好的树洞吗',
@@ -219,7 +219,7 @@ export default {
           author: '校长',
           status: 'processing'
         },
-        { 
+        {
           id: 7,
           title: '被欺负了一个学期',
           content: '没办法了只能求救',
@@ -235,29 +235,28 @@ export default {
   },
   computed: {
     inAuthPosts() {
-      return this.posts.filter(post=>post.status === 'inAuth')
+      return this.posts.filter(post => post.status === 'inAuth')
     },
     inProcessPosts() {
-      return this.posts.filter(post=>post.status === 'inProcess')
+      return this.posts.filter(post => post.status === 'inProcess')
     },
     processingPosts() {
-      return this.posts.filter(post=>post.status === 'processing')
+      return this.posts.filter(post => post.status === 'processing')
     }
   },
   methods: {
     handleClick(tab, event) {
-      console.log(tab, event);
+      console.log(tab, event)
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
-        valid ? alert('submit!') : alert('error!');
-        if (!vaild) return false;
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      }
+        valid ? alert('submit!') : alert('error!')
+      })
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
     }
+  }
 }
 </script>
 
@@ -301,7 +300,7 @@ export default {
       .right-section {
         display: flex;
       }
-      
+
     }
 }
 </style>
