@@ -2,10 +2,78 @@
 <div class="hc-container">
     <div class="hc-posts">
         <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="全部" name="all">全部</el-tab-pane>
-            <el-tab-pane label="待认证" name="inAuth">待认证</el-tab-pane>
-            <el-tab-pane label="待处理" name="inProcess">待处理</el-tab-pane>
-            <el-tab-pane label="处理中" name="Processing">处理中</el-tab-pane>
+            <el-tab-pane label="全部" name="all">
+              <div class="hc-post-layout" v-for="post in posts" :key="post.id">
+                <div class="hc-post-item">
+                  <div class="left-section">
+                    <h3>{{ post.title }}</h3>
+                    <span>求助内容: {{ post.content }}</span>
+                    <div class="post-info">
+                      <span>区域: {{ post.region }}</span>
+                      <span>发布人: {{ post.author }}</span>
+                    </div>
+                  </div>
+                  <div class="right-section">
+                    <el-button type="primary">查看详情</el-button>
+                  </div>
+                </div>
+                <el-divider></el-divider>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="待认证" name="inAuth">
+              <div class="hc-post-layout" v-for="post in inAuthPosts" :key="post.id">
+                <div class="hc-post-item">
+                  <div class="left-section">
+                    <h3>{{ post.title }}</h3>
+                    <span>求助内容: {{ post.content }}</span>
+                    <div class="post-info">
+                      <span>区域: {{ post.region }}</span>
+                      <span>发布人: {{ post.author }}</span>
+                    </div>
+                  </div>
+                  <div class="right-section">
+                    <el-button type="primary">查看详情</el-button>
+                  </div>
+                </div>
+                <el-divider></el-divider>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="待处理" name="inProcess">
+              <div class="hc-post-layout" v-for="post in inProcessPosts" :key="post.id">
+                <div class="hc-post-item">
+                  <div class="left-section">
+                    <h3>{{ post.title }}</h3>
+                    <span>求助内容: {{ post.content }}</span>
+                    <div class="post-info">
+                      <span>区域: {{ post.region }}</span>
+                      <span>发布人: {{ post.author }}</span>
+                    </div>
+                  </div>
+                  <div class="right-section">
+                    <el-button type="primary">查看详情</el-button>
+                  </div>
+                </div>
+                <el-divider></el-divider>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="处理中" name="processing">
+              <div class="hc-post-layout" v-for="post in processingPosts" :key="post.id">
+                <div class="hc-post-item">
+                  <div class="left-section">
+                    <h3>{{ post.title }}</h3>
+                    <span>求助内容: {{ post.content }}</span>
+                    <div class="post-info">
+                      <span>区域: {{ post.region }}</span>
+                      <span>发布人: {{ post.author }}</span>
+                    </div>
+                  </div>
+                  <div class="right-section">
+                    <el-button type="primary">查看详情</el-button>
+                  </div>
+                </div>
+                <el-divider></el-divider>
+              </div>
+            </el-tab-pane>
         </el-tabs>
     </div>
     <div class="hc-form">
@@ -48,48 +116,133 @@ export default {
   name: 'Helpingcenter',
   data () {
     return {
-    activeName: 'all',
-    labelPosition1: 'top',
-    labelPosition2: 'left',
-    hcPostForm: {
-        title: '',
-        content: '',
-        region: '',
-        detailedAddr: '',
-        contactPerson: '',
-        contactDetail: ''
+      activeName: 'all',
+      labelPosition1: 'top',
+      labelPosition2: 'left',
+      hcPostForm: {
+          title: '',
+          content: '',
+          region: '',
+          detailedAddr: '',
+          contactPerson: '',
+          contactDetail: ''
+        },
+      rules: {
+        title: [
+          { required: true, message: '请输入求助标题', trigger: 'blur' },
+          { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+        ],
+        content: [
+          { required: true, message: '请输入求助内容', trigger: 'blur' },
+          { min: 15, max: 2000, message: '长度在 15 到 2000 个字符', trigger: 'blur' }
+        ],
+        region: [
+          { required: true, message: '请输入所在区域', trigger: 'change' }
+        ],
+        detailedAddr: [
+          { required: true, message: '请输入详细地址', trigger: 'blur' },
+          { min: 8, max: 50, message: '长度在 8 到 50 个字符', trigger: 'blur' }
+        ],
+        contactPerson: [
+          { required: true, message: '请输入联系人', trigger: 'blur' },
+          { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+        ],
+        contactDetail: [
+          { required: true, message: '请输入联系方式', trigger: 'blur' },
+          { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+        ]
       },
-    rules: {
-      title: [
-        { required: true, message: '请输入求助标题', trigger: 'blur' },
-        { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
-      ],
-      content: [
-        { required: true, message: '请输入求助内容', trigger: 'blur' },
-        { min: 15, max: 2000, message: '长度在 15 到 2000 个字符', trigger: 'blur' }
-      ],
-      region: [
-        { required: true, message: '请输入所在区域', trigger: 'change' }
-      ],
-      detailedAddr: [
-        { required: true, message: '请输入详细地址', trigger: 'blur' },
-        { min: 8, max: 50, message: '长度在 8 到 50 个字符', trigger: 'blur' }
-      ],
-      contactPerson: [
-        { required: true, message: '请输入联系人', trigger: 'blur' },
-        { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
-      ],
-      contactDetail: [
-        { required: true, message: '请输入联系方式', trigger: 'blur' },
-        { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+      posts: [
+        { 
+          id: 1,
+          title: '我天天被欺负',
+          content: '我天天被欺负，真的好无奈，我该怎么办呢？',
+          region: '北京市',
+          detailedAddr: '北京市东城区',
+          contactPerson: '葛优',
+          contactDetail: '13822921101',
+          author: '校长',
+          status: 'inAuth'
+        },
+        { 
+          id: 2,
+          title: '被揍了',
+          content: '谁能替我报仇',
+          region: '上海市',
+          detailedAddr: '上海市',
+          contactPerson: '甄子丹',
+          contactDetail: '13822921101',
+          author: '校长',
+          status: 'inAuth'
+        },
+        { 
+          id: 3,
+          title: '找大佬',
+          content: '我天天被欺负，找大佬罩我',
+          region: '南京市',
+          detailedAddr: '南京市',
+          contactPerson: '葛优',
+          contactDetail: '13822921101',
+          author: '校长',
+          status: 'inAuth'
+        },
+        { 
+          id: 4,
+          title: '老师也欺负我',
+          content: '这是我没想到的，大人也不全是好人',
+          region: '西安市',
+          detailedAddr: '西安市',
+          contactPerson: '张艺谋',
+          contactDetail: '13822921101',
+          author: '校长',
+          status: 'inProcess'
+        },
+        { 
+          id: 5,
+          title: '到底该说不该说',
+          content: '被班长欺负，人面兽心',
+          region: '成都市',
+          detailedAddr: '成都市',
+          contactPerson: '葛优',
+          contactDetail: '13822921101',
+          author: '校长',
+          status: 'inProcess'
+        },
+        { 
+          id: 6,
+          title: '不敢说',
+          content: '这里会是一个好的树洞吗',
+          region: '成都市',
+          detailedAddr: '成都市',
+          contactPerson: '葛优',
+          contactDetail: '13822921101',
+          author: '校长',
+          status: 'processing'
+        },
+        { 
+          id: 7,
+          title: '被欺负了一个学期',
+          content: '没办法了只能求救',
+          region: '成都市',
+          detailedAddr: '成都市',
+          contactPerson: '葛优',
+          contactDetail: '13822921101',
+          author: '校长',
+          status: 'processing'
+        }
       ]
-    }
     }
   },
   computed: {
-    ...mapGetters([
-      'name'
-    ])
+    inAuthPosts() {
+      return this.posts.filter(post=>post.status === 'inAuth')
+    },
+    inProcessPosts() {
+      return this.posts.filter(post=>post.status === 'inProcess')
+    },
+    processingPosts() {
+      return this.posts.filter(post=>post.status === 'processing')
+    }
   },
   methods: {
     handleClick(tab, event) {
@@ -121,6 +274,34 @@ export default {
     }
     .hc-form {
         width: 28%;
+    }
+    .hc-post-layout {
+      display: flex;
+      flex-direction: column;
+    }
+    .hc-post-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width:95%;
+      margin: 0 auto;
+      .left-section {
+        display: flex;
+        flex-direction: column;
+        span {
+          color: #606266;
+          font-size: 14px;
+          margin-bottom: 1rem;
+        }
+        .post-info > span {
+          margin-right: 20px;
+        }
+      }
+      .right-section {
+        display: flex;
+      }
+      
     }
 }
 </style>
