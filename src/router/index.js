@@ -54,7 +54,17 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
-
+  {
+    path: '/hc', //helping center
+    component: Layout,
+    redirect: '/hc/index',
+    children: [{
+      path: 'index',
+      name: 'Helpingcenter',
+      component: () => import('@/views/helpingcenter/index'),
+      meta: { title: 'HelpingCenter' }
+    }]
+  },
   {
     path: '/example',
     component: Layout,

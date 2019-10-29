@@ -18,7 +18,7 @@
         <router-link to="/404">
           <el-menu-item index="2">我要揭发</el-menu-item>
         </router-link>
-        <router-link to="/">
+        <router-link to="/hc">
           <el-menu-item index="3">求助中心</el-menu-item>
         </router-link>
         <router-link to="/">
