@@ -7,7 +7,8 @@
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
-      @select="handleSelect">
+      @select="handleSelect"
+    >
       <div class="logo">
         <el-menu-item index="0">
           <img src="@/assets/logo.png" alt="logo">
@@ -35,9 +36,9 @@
       </div>
       <div class="profile">
         <router-link to="/">
-        <el-menu-item index="7">
-          <el-avatar class="myAvator" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-        </el-menu-item>
+          <el-menu-item index="7">
+            <el-avatar class="myAvator" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+          </el-menu-item>
         </router-link>
         <el-menu-item class="logout" index="8" @click="logout">登出</el-menu-item>
       </div>
@@ -64,7 +65,7 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
