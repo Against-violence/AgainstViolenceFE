@@ -9,7 +9,9 @@
       active-text-color="#ffd04b"
       @select="handleSelect">
       <div class="logo">
-        <el-menu-item index="0">发声网</el-menu-item>
+        <el-menu-item index="0">
+          <img src="@/assets/logo.png" alt="logo">
+        </el-menu-item>
       </div>
       <div class="navMain">
         <router-link to="/">
@@ -81,6 +83,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  .logo {
+    img {
+      display: inline-block;
+      width: 38px;
+      height: 38px;
+    }
+  }
   .logo .el-menu-item {
     font-size: 32px;
     font-weight: 600;
