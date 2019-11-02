@@ -7,6 +7,17 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+
+Vue.mixin({
+  methods: {
+    getAuthHeaders(){
+      return {
+        Authorization: `Bearer ${localStorage.token || ''}`
+      }
+    }
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
