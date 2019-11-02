@@ -3,14 +3,21 @@
 import Vue from 'vue'
 import App from './App'
 import './resources/elementUI'
+import { Message } from 'element-ui';
 import router from './router'
+import http from './http'
+Vue.prototype.$http = http
+import store from './vuex/store'
+import {
+  userToken
+} from "./vuex/mutations";
 
 Vue.config.productionTip = false
 
 
 Vue.mixin({
   methods: {
-    getAuthHeaders(){
+    getAuthHeaders() {
       return {
         Authorization: `Bearer ${localStorage.token || ''}`
       }
@@ -18,10 +25,35 @@ Vue.mixin({
   }
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(res => res.meta.requireAuth)) {
+    if (localStorage.getItem('userName')) {
+      next()
+    } else {
+      Message({
+        message: "未登录, 请先登录",
+        type: "warning",
+        center: true
+    });
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    }
+  } else {
+    next()
+  }
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  store,
+  components: {
+    App
+  },
   template: '<App/>'
 })

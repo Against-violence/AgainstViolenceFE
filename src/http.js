@@ -1,10 +1,11 @@
 import axios from 'axios'
 import Vue from 'vue'
 import router from './router'
-
+axios.defaults.withCredentials = false;
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 const http = axios.create({
   baseURL: 'http://139.9.203.86:4000/api'
-})
+});
 http.interceptors.request.use(function (config) {
   if (localStorage.token) {
     config.headers.Authorization = 'Bearer ' + localStorage.token

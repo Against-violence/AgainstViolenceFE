@@ -28,14 +28,25 @@ const router = new Router({
       path: '/',
       name: 'main',
       component: Main,
+      meta: {
+        requireAuth: true
+      },
       // redirect: '/home',
       children: [{
           path: '/home',
-          component: Home
+          name: 'home',
+          component: Home,
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/hc/list',
-          component: HelpingCenter
+          name: 'hc',
+          component: HelpingCenter,
+          meta: {
+            requireAuth: true
+          }
         }
       ]
     },

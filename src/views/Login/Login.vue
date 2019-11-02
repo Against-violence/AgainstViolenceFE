@@ -7,7 +7,7 @@
             </el-form-item>
 
             <el-form-item label="密码" prop="password" class="login-input">
-                <el-input ref="password" v-model="loginForm.password" placeholder="请输入密码" name="password" tabindex="2" @keyup.enter.native="handleLogin" />
+                <el-input ref="password" v-model="loginForm.password" placeholder="请输入密码" name="password" type="password" tabindex="2" @keyup.enter.native="handleLogin" />
             </el-form-item>
 
             <!-- <el-form-item label="验证码" style="margin: 0px 0px 10px 0px">
@@ -40,6 +40,7 @@
 
 
 <script>
+import Vue from 'vue'
 export default {
     name: "Login",
     data() {
@@ -56,7 +57,7 @@ export default {
                         trigger: "blur"
                     },
                     {
-                        min: 6,
+                        min: 5,
                         max: 20,
                         message: "长度在 6 到 20 个字符",
                         trigger: "blur"
@@ -79,23 +80,43 @@ export default {
         };
     },
     methods: {
-        handleLogin() {
-            this.$refs.loginForm.validate(valid => {
-                if (valid) {
-                    this.loading = true;
-                    setTimeout(() => {
-                        this.$router.push({ path: "/hc/list" });
-                        this.$message({
-                            message: "登录成功",
-                            type: "success",
-                            center: true
-                        });
-                    }, 2000);
+        async handleLogin() {
+            const isFormValid = await this.$refs.loginForm.validate();
+
+            if (isFormValid) {
+                this.loading = true;
+                const loginResponse = await this.$http.post("/login", {
+                    username: this.loginForm.username,
+                    password: this.loginForm.password
+                });
+                const { status } = loginResponse;
+                if (status === 200) {
+                    this.$message({
+                        message: "登录成功",
+                        type: "success",
+                        center: true
+                    });
+                    localStorage.setItem(
+                        "userName",
+                        loginResponse.data.username
+                    );
+                    localStorage.setItem("userToken", loginResponse.data.token);
+                    //将用户信息放入vuex
+                    this.$store.dispatch(
+                        "setUser",
+                        loginResponse.data.username
+                    );
+                    this.$store.dispatch("setToken", loginResponse.data.token);
+                    this.$router.push({ path: "/hc/list" });
                 } else {
-                    console.log("error submit!!");
-                    return false;
+                    this.$message({
+                        message: "登录失败",
+                        type: "error",
+                        center: true
+                    });
+                    this.$store.dispatch("setUser", null);
                 }
-            });
+            }
         }
     }
 };
