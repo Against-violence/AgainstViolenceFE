@@ -36,10 +36,15 @@ export default {
             console.log(key, keyPath);
         },
         toRouter(path) {
-            !path ? alert('敬请期待') : this.$router.push({ path })
+            !path ? alert("敬请期待") : this.$router.push({ path });
         },
-        async logout() {
-            await ''; 
+        logout() {
+            this.$message({
+                message: "登出成功",
+                type: "success",
+                center: true
+            });
+            this.toRouter("/login");
         }
     }
 };
@@ -71,6 +76,5 @@ export default {
     flex: 1;
 }
 .profile {
-
 }
 </style>
