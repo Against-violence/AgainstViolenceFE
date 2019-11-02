@@ -65,6 +65,7 @@ export default {
     border-bottom: 3px solid;
 }
 .el-menu-nav {
+    height: 60px;
     display: flex;
     justify-content: space-around;
     flex: 1;
