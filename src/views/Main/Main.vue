@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main">
         <Navbar />
         <router-view :key='$route.path'></router-view>
     </div>
@@ -22,4 +22,8 @@ export default {
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
+ .main {
+     display: flex;
+     flex-direction: column;
+ }
 </style>
