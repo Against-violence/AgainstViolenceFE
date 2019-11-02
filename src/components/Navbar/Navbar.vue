@@ -1,13 +1,12 @@
 <template>
-    <div>
-        navbar
-        <router-view :key="$route.path"></router-view>
-    </div>
+  <div>
+    Navbar
+  </div>
 </template>
 
 <script>
 export default {
-    name: "Register",
+    name: "Navbar",
     data() {
         return {
             msg: ""

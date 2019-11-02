@@ -1,20 +1,20 @@
 <template>
   <div>
-    Home
+    Login
   </div>
 </template>
 
 <script>
 export default {
-    name: "Home",
+    name: 'Login',
     data() {
         return {
-            msg: ""
+            msg: ''
         };
     }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
 </style>
