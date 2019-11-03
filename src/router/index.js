@@ -5,6 +5,7 @@ import Login from '@/views/Login/Login.vue'
 import Main from '@/views/Main/Main.vue'
 import Home from '@/views/Home/Home.vue'
 import HelpingCenter from '@/views/HelpingCenter/HelpingCenter.vue'
+import SettingCenter from '@/views/SettingCenter/SettingCenter.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -44,6 +45,14 @@ const router = new Router({
           path: '/hc/list',
           name: 'hc',
           component: HelpingCenter,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/sc/home',
+          name: 'scHome',
+          component: SettingCenter,
           meta: {
             requireAuth: true
           }
