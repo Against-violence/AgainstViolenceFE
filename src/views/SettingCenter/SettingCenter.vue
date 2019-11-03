@@ -1,11 +1,11 @@
 <template>
-  <el-container style="height: 500px; border: 1px solid #eee">
-    <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+  <el-container class="sc-container">
+    <el-aside width="200px">
       <el-menu router :default-active="$route.path">
         <el-menu-item>
           <template slot="title"><i class="el-icon-user-solid"></i>我的主页</template>
         </el-menu-item>
-        <el-menu-item index="/hc">
+        <el-menu-item index="/hc/list">
           <template slot="title"><i class="el-icon-chat-round"></i>我的发帖</template>
         </el-menu-item>
         <el-menu-item>
@@ -61,6 +61,16 @@
 
 .el-aside {
     color: #333;
+    background-color: rgb(238, 241, 246);
+}
+
+.sc-container {
+    width: 65%;
+    margin: 0 auto;
+    border: 1px solid #eee
+}
+.sc-container .el-menu {
+    height: 100%;
 }
 </style>
 
