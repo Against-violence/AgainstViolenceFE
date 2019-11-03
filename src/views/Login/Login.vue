@@ -127,7 +127,6 @@ export default {
 <style scoped>
 .login-container {
     display: flex;
-    padding-top: 200px;
     justify-content: center;
     min-height: 100vh;
     height: 100vh;
@@ -135,6 +134,7 @@ export default {
 }
 .login-form {
     width: 450px;
+    padding-top: 200px;
 }
 .title {
     font-size: 26px;
