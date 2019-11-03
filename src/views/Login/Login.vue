@@ -26,8 +26,9 @@
                     <el-col :span="Number(12)">
                         <el-checkbox>保存密码</el-checkbox>
                     </el-col>
-                    <el-col :span="Number(12)">
-                        <a style="margin-left: 65%; color: #666; text-decoration: none;" href="about blank">忘记密码</a>
+                    <el-col :span="Number(8)" :offset="Number(3)" class="link">
+                        <a class="forget-password">忘记密码</a>
+                        <a @click="$router.push('/register')">没有账号?</a>
                     </el-col>
                 </el-row>
             </el-form-item>
@@ -40,7 +41,7 @@
 
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 export default {
     name: "Login",
     data() {
@@ -80,40 +81,49 @@ export default {
         };
     },
     methods: {
+        buildMessageBox(message, type) {
+            this.$message({
+                message,
+                type
+            });
+        },
         async handleLogin() {
             const isFormValid = await this.$refs.loginForm.validate();
 
             if (isFormValid) {
                 this.loading = true;
-                const loginResponse = await this.$http.post("/login", {
-                    username: this.loginForm.username,
-                    password: this.loginForm.password
-                });
-                const { status } = loginResponse;
-                if (status === 200) {
-                    this.$message({
-                        message: "登录成功",
-                        type: "success",
-                        center: true
+                try {
+                    const loginResponse = await this.$http.post("/login", {
+                        username: this.loginForm.username,
+                        password: this.loginForm.password
                     });
-                    localStorage.setItem(
-                        "userName",
-                        loginResponse.data.username
-                    );
-                    localStorage.setItem("userToken", loginResponse.data.token);
-                    //将用户信息放入vuex
-                    this.$store.dispatch(
-                        "setUser",
-                        loginResponse.data.username
-                    );
-                    this.$store.dispatch("setToken", loginResponse.data.token);
-                    this.$router.push({ path: "/hc/list" });
-                } else {
-                    this.$message({
-                        message: "登录失败",
-                        type: "error",
-                        center: true
-                    });
+                    const { status } = loginResponse;
+                    if (status === 200) {
+                        this.buildMessageBox("登录成功", "success");
+                        localStorage.setItem(
+                            "userName",
+                            loginResponse.data.username
+                        );
+                        localStorage.setItem(
+                            "userToken",
+                            loginResponse.data.token
+                        );
+                        //将用户信息放入vuex
+                        this.$store.dispatch(
+                            "setUser",
+                            loginResponse.data.username
+                        );
+                        this.$store.dispatch(
+                            "setToken",
+                            loginResponse.data.token
+                        );
+                        setTimeout(() => {
+                            this.$router.push({ path: "/hc/list" });
+                        }, 2000);
+                    }
+                } catch (error) {
+                    this.loading = false;
+                    this.buildMessageBox("登录失败", "error");
                     this.$store.dispatch("setUser", null);
                 }
             }
@@ -126,7 +136,6 @@ export default {
 <style scoped>
 .login-container {
     display: flex;
-    padding-top: 200px;
     justify-content: center;
     min-height: 100vh;
     height: 100vh;
@@ -134,10 +143,19 @@ export default {
 }
 .login-form {
     width: 450px;
+    padding-top: 200px;
 }
 .title {
     font-size: 26px;
     text-align: center;
+}
+.link {
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+}
+.link .forget-password {
+    margin-right: 5%;
 }
 .login-input {
     margin-bottom: 25px;

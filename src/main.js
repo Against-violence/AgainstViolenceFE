@@ -32,8 +32,7 @@ router.beforeEach((to, from, next) => {
     } else {
       Message({
         message: "未登录, 请先登录",
-        type: "warning",
-        center: true
+        type: "warning"
     });
       next({
         path: '/login',
