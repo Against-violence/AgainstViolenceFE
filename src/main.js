@@ -12,8 +12,12 @@ import App from './App'
 import store from './store'
 import router from './router'
 
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
 import '@/icons' // icon
 import '@/permission' // permission control
+import '@/styles/iconfont.css'
+import 'swiper/dist/css/swiper.css'
 
 /**
  * If you don't want to use mock-server
@@ -30,7 +34,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
-
+Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 
 new Vue({
