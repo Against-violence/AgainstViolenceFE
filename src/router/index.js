@@ -159,6 +159,12 @@ export const constantRoutes = [
   },
 
   {
+    path: '/media',
+    component: () => import('@/views/mediaInformation/index'),
+    hidden: true
+  },
+
+  {
     path: 'external-link',
     component: Layout,
     children: [
