@@ -28,13 +28,11 @@
           </el-upload>
         </el-tab-pane>
         <el-tab-pane label="修改头像" name="second">
-          <el-tab-pane label="基本资料" name="first">
             <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview" :on-remove="handleRemove" :file-list="fileList" list-type="picture">
               <el-button size="small" type="primary">点击上传</el-button>
               <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
           </el-tab-pane>
-        </el-tab-pane>
         <el-tab-pane label="修改密码" name="third">
           <el-form :model="passwordFrom" status-icon :rules="passwordRules" ref="passwordFrom" label-width="100px">
             <el-form-item label="密码" prop="pass">
