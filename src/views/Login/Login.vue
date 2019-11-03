@@ -41,7 +41,7 @@
 
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 export default {
     name: "Login",
     data() {
@@ -81,40 +81,49 @@ export default {
         };
     },
     methods: {
+        buildMessageBox(message, type) {
+            this.$message({
+                message,
+                type
+            });
+        },
         async handleLogin() {
             const isFormValid = await this.$refs.loginForm.validate();
 
             if (isFormValid) {
                 this.loading = true;
-                const loginResponse = await this.$http.post("/login", {
-                    username: this.loginForm.username,
-                    password: this.loginForm.password
-                });
-                const { status } = loginResponse;
-                if (status === 200) {
-                    this.$message({
-                        message: "登录成功",
-                        type: "success",
-                        center: true
+                try {
+                    const loginResponse = await this.$http.post("/login", {
+                        username: this.loginForm.username,
+                        password: this.loginForm.password
                     });
-                    localStorage.setItem(
-                        "userName",
-                        loginResponse.data.username
-                    );
-                    localStorage.setItem("userToken", loginResponse.data.token);
-                    //将用户信息放入vuex
-                    this.$store.dispatch(
-                        "setUser",
-                        loginResponse.data.username
-                    );
-                    this.$store.dispatch("setToken", loginResponse.data.token);
-                    this.$router.push({ path: "/hc/list" });
-                } else {
-                    this.$message({
-                        message: "登录失败",
-                        type: "error",
-                        center: true
-                    });
+                    const { status } = loginResponse;
+                    if (status === 200) {
+                        this.buildMessageBox("登录成功", "success");
+                        localStorage.setItem(
+                            "userName",
+                            loginResponse.data.username
+                        );
+                        localStorage.setItem(
+                            "userToken",
+                            loginResponse.data.token
+                        );
+                        //将用户信息放入vuex
+                        this.$store.dispatch(
+                            "setUser",
+                            loginResponse.data.username
+                        );
+                        this.$store.dispatch(
+                            "setToken",
+                            loginResponse.data.token
+                        );
+                        setTimeout(() => {
+                            this.$router.push({ path: "/hc/list" });
+                        }, 2000);
+                    }
+                } catch (error) {
+                    this.loading = false;
+                    this.buildMessageBox("登录失败", "error");
                     this.$store.dispatch("setUser", null);
                 }
             }
@@ -141,7 +150,7 @@ export default {
     text-align: center;
 }
 .link {
-    color: #666; 
+    color: #666;
     text-decoration: none;
     cursor: pointer;
 }
