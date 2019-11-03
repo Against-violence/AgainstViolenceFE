@@ -26,8 +26,9 @@
                     <el-col :span="Number(12)">
                         <el-checkbox>保存密码</el-checkbox>
                     </el-col>
-                    <el-col :span="Number(12)">
-                        <a style="margin-left: 65%; color: #666; text-decoration: none;" href="about blank">忘记密码</a>
+                    <el-col :span="Number(8)" :offset="Number(3)" class="link">
+                        <a class="forget-password">忘记密码</a>
+                        <a @click="$router.push('/register')">没有账号?</a>
                     </el-col>
                 </el-row>
             </el-form-item>
@@ -138,6 +139,14 @@ export default {
 .title {
     font-size: 26px;
     text-align: center;
+}
+.link {
+    color: #666; 
+    text-decoration: none;
+    cursor: pointer;
+}
+.link .forget-password {
+    margin-right: 5%;
 }
 .login-input {
     margin-bottom: 25px;
