@@ -8,59 +8,68 @@ import Main from '@/views/Main/Main.vue'
 import Home from '@/views/Home/Home.vue'
 import HelpingCenter from '@/views/HelpingCenter/HelpingCenter.vue'
 import SettingCenter from '@/views/SettingCenter/SettingCenter.vue'
+import MessageWall from '@/views/MessageWall'
 Vue.use(Router)
 
 const router = new Router({
   routes: [{
-    path: '/login',
-    name: 'login',
-    component: Login,
-    meta: {
-      isPublic: true
-    }
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: Register,
-    meta: {
-      isPublic: true
-    }
-  },
-  {
-    path: '/',
-    name: 'main',
-    component: Main,
-    meta: {
-      requireAuth: true
-    },
-    // redirect: '/home',
-    children: [{
-      path: '/home',
-      name: 'home',
-      component: Home,
+      path: '/login',
+      name: 'login',
+      component: Login,
       meta: {
-        requireAuth: true
+        isPublic: true
       }
     },
     {
-      path: '/hc/list',
-      name: 'hc',
-      component: HelpingCenter,
+      path: '/register',
+      name: 'register',
+      component: Register,
       meta: {
-        requireAuth: true
+        isPublic: true
       }
     },
     {
-      path: '/sc/home',
-      name: 'scHome',
-      component: SettingCenter,
+      path: '/',
+      name: 'main',
+      component: Main,
       meta: {
         requireAuth: true
-      }
-    }
-    ]
-  },
+      },
+      // redirect: '/home',
+      children: [{
+          path: '/home',
+          name: 'home',
+          component: Home,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/hc/list',
+          name: 'hc',
+          component: HelpingCenter,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/sc/home',
+          name: 'scHome',
+          component: SettingCenter,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/mw/index',
+          name: 'mw',
+          component: MessageWall,
+          meta: {
+            requireAuth: true
+          }
+        }
+      ]
+    },
 
   ]
 })
