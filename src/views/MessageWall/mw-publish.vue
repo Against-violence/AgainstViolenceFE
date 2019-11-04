@@ -20,12 +20,18 @@ import formatedate from '@/utils/formatedate'
 export default {
   data() {
     return {
-      textarea: ''
+      textarea: '',
+      user: {
+        id: 'user_0000001',
+        name: 'Jack',
+        avatar:
+          'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      }
     }
   },
   computed: {
     ...mapState({
-      user: state => state.user,
+      // user: state => state.user,
       messages: state => state.messages
     })
   },
