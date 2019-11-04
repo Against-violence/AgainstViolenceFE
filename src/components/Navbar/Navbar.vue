@@ -6,7 +6,7 @@
             </div>
             <div class="navMain flex">
                 <el-menu-item index="home" @click="toRouter('/home')">首页</el-menu-item>
-                <el-menu-item index="2" @click="toRouter()">我要揭发</el-menu-item>
+                <el-menu-item index="expose" @click="toRouter('/expose/home')">我要揭发</el-menu-item>
                 <el-menu-item index="hc" @click="toRouter('/hc/list')">求助中心</el-menu-item>
                 <el-menu-item index="4" @click="toRouter()">社区论坛</el-menu-item>
                 <el-menu-item index="5" @click="toRouter()">相关资讯</el-menu-item>
