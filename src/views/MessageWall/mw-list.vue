@@ -51,8 +51,18 @@ export default {
     }
   },
   computed: {
+    data() {
+      return {
+        user: {
+          id: 'user_0000001',
+          name: 'Jack',
+          avatar:
+            'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+        }
+      }
+    },
     ...mapState({
-      user: state => state.user,
+      // user: state => state.user,
       messages: state => state.messages,
       start: state => state.start
     }),
