@@ -5,6 +5,7 @@ import Login from '@/views/Login/Login.vue'
 import Main from '@/views/Main/Main.vue'
 import Home from '@/views/Home/Home.vue'
 import HelpingCenter from '@/views/HelpingCenter/HelpingCenter.vue'
+import MessageWall from '@/views/MessageWall'
 Vue.use(Router)
 
 const router = new Router({
@@ -44,6 +45,14 @@ const router = new Router({
           path: '/hc/list',
           name: 'hc',
           component: HelpingCenter,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/mw/index',
+          name: 'mw',
+          component: MessageWall,
           meta: {
             requireAuth: true
           }
