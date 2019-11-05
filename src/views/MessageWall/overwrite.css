@@ -1,0 +1,10 @@
+.warn-message {
+  min-width: 200px;
+}
+.clearfix::after {
+  content: '.';
+  clear: both;
+  visibility: hidden;
+  display: block;
+  height: 0;
+}

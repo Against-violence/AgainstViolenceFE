@@ -3,17 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import './resources/elementUI'
-import { Message } from 'element-ui';
+import { Message } from 'element-ui'
 import router from './router'
 import http from './http'
+import store from './store'
+import user from "./store/modules/user"
+
 Vue.prototype.$http = http
-import store from './vuex/store'
-import {
-  userToken
-} from "./vuex/mutations";
-
+const userToken = user.mutations.USER_TOKEN
 Vue.config.productionTip = false
-
 
 Vue.mixin({
   methods: {
