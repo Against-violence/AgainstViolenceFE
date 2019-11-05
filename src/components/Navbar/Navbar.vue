@@ -13,7 +13,7 @@
                 <el-menu-item index="mw" @click="toRouter('/mw/index')">万人墙</el-menu-item>
             </div>
             <div class="profile flex">
-                <el-menu-item index="7" @click="toRouter()" v-if="isLogin">
+                <el-menu-item index="scHome" @click="toRouter('/sc/home')" v-if="isLogin">
                     <!-- <el-avatar class="myAvator" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar> -->
                     {{ currentUser }}
                 </el-menu-item>

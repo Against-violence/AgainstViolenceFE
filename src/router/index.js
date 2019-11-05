@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import NProgress from 'nprogress' // Progress 进度条
+import 'nprogress/nprogress.css' // Progress 进度条样式
 import Register from '@/views/Register/Register.vue'
 import Login from '@/views/Login/Login.vue'
 import Main from '@/views/Main/Main.vue'
 import Home from '@/views/Home/Home.vue'
 import HelpingCenter from '@/views/HelpingCenter/HelpingCenter.vue'
+import SettingCenter from '@/views/SettingCenter/SettingCenter.vue'
 import MessageWall from '@/views/MessageWall'
 Vue.use(Router)
 
@@ -50,6 +53,14 @@ const router = new Router({
           }
         },
         {
+          path: '/sc/home',
+          name: 'scHome',
+          component: SettingCenter,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
           path: '/mw/index',
           name: 'mw',
           component: MessageWall,
@@ -62,10 +73,13 @@ const router = new Router({
 
   ]
 })
-// router.beforeEach((to, from ,next) => {
-//   if (!to.meta.isPublic && !localStorage.token) {
-//     return next('/login')
-//   }
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  if (to.path !== from.path) {
+    NProgress.start();
+  }
+  next();
+});
+router.afterEach(route => {
+  NProgress.done();
+})
 export default router
