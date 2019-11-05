@@ -34,9 +34,6 @@ import _ from 'lodash'
 import { mapState } from 'vuex'
 import MwItem from './mw-item'
 export default {
-  components: {
-    MwItem
-  },
   props: {
     searchResult: {
       type: Object,
@@ -47,25 +44,19 @@ export default {
     return {
       hold: false, // 按钮是否长按
       timeoutEvent: 0, // timeout定时器id
-      timer: null // 长按触发的interval定时器id
+      timer: null, // 长按触发的interval定时器id
+      user: {
+        id: 'user_0000001',
+        name: 'Jack',
+        avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      }
     }
   },
   computed: {
-    data() {
-      return {
-        user: {
-          id: 'user_0000001',
-          name: 'Jack',
-          avatar:
-            'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
-        }
-      }
-    },
-    ...mapState({
-      // user: state => state.user,
-      messages: state => state.messages,
-      start: state => state.start
-    }),
+    ...mapState('mw', [
+      'messages',
+      'start'
+    ]),
     messagesLength() {
       // 原消息数组或搜索结果数组的长度
       return this.input
@@ -144,15 +135,18 @@ export default {
         this.warnMessage('已到达顶部')
         return
       }
-      this.$store.dispatch('decreaseStart')
+      this.$store.dispatch('mw/decreaseStart')
     },
     increaseStart() {
       if (this.start > this.messagesLength - 7) {
         this.warnMessage('已到达底部')
         return
       }
-      this.$store.dispatch('increaseStart')
+      this.$store.dispatch('mw/increaseStart')
     }
+  },
+  components: {
+    MwItem
   }
 }
 </script>

@@ -15,14 +15,14 @@ export default {
   },
   computed: {
     ...mapState({
-      messages: state => state.messages
+      messages: state => state.mw.messages
     })
   },
   methods: {
     handleSearch() {
       const input = this.input.trim()
       const messages = this.messages.filter(message => {
-        return message.content.indexOf(input) !== -1
+        return message.content.includes(input)
       })
       this.$emit('get-search-result', { input, messages })
       this.input = ''

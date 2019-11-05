@@ -1,6 +1,7 @@
 .warn-message {
   min-width: 200px;
 }
+
 .clearfix::after {
   content: '.';
   clear: both;

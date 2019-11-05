@@ -11,7 +11,7 @@
       <div class="mw-func clearfix">
         <div :title="isLike ? '取消赞' : '赞'" class="con-handle" @click="handleLike">
           <i class="el-icon-thumb" :class="{islike: isLike}" />
-          <i>{{ message.likes.length === 0 ? '赞' : message.likes.length }}</i>
+          <i>{{ message.likes && message.likes.length === 0 ? '赞' : message.likes.length }}</i>
         </div>
         <div class="con-time">{{ message.time }}</div>
       </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import _ from 'lodash'
 export default {
   props: {
@@ -43,12 +43,15 @@ export default {
     /* ...mapState({
       user: state => state.user
     }) */
-
     isLike() {
-      return this.message.likes.indexOf(this.user.name) !== -1
+      return this.message.likes.includes(this.user.name)
     }
   },
   methods: {
+    ...mapActions('mw', [
+      'increaseLikes',
+      'decreaseLikes'
+    ]), 
     // 处理点赞
     handleLike: _.throttle(function() {
       const likeConfig = {
@@ -56,9 +59,9 @@ export default {
         username: this.user.name
       }
       if (this.isLike) {
-        this.$store.dispatch('decreaseLikes', likeConfig)
+        this.decreaseLikes(likeConfig)
       } else {
-        this.$store.dispatch('increaseLikes', likeConfig)
+        this.increaseLikes(likeConfig)
       }
     }, 1000)
   }
@@ -94,6 +97,7 @@ export default {
   letter-spacing: normal;
   word-spacing: normal;
   cursor: pointer;
+  font-size: 0;
 }
 .con-handle:hover i:nth-child(2) {
   color: #eb7350;
@@ -104,6 +108,7 @@ export default {
   margin-left: 4px;
   cursor: pointer;
   user-select: none;
+  font-size: 14px;
 }
 .con-handle .islike {
   color: #eb7350;

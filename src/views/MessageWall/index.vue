@@ -26,11 +26,11 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('getMessages')
+    this.$store.dispatch('mw/getMessages')
   },
   methods: {
     getSearchResult({ input, messages }) {
-      this.$store.dispatch('resetStart')
+      this.$store.dispatch('mw/resetStart')
       this.searchResult = { input, messages }
     }
   }

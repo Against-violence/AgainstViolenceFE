@@ -32,7 +32,7 @@ export default {
   computed: {
     ...mapState({
       // user: state => state.user,
-      messages: state => state.messages
+      messages: state => state.mw.messages
     })
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
         time,
         likes: []
       }
-      this.$store.dispatch('addMessage', message)
+      this.$store.dispatch('mw/addMessage', message)
       this.textarea = ''
     }
   }
@@ -64,6 +64,7 @@ export default {
 <style scoped>
 .mw-publish {
   padding: 15px;
+  font-size: 0;
 }
 .mw-publish-textarea {
   width: 300px;

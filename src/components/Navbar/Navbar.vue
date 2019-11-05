@@ -10,7 +10,7 @@
                 <el-menu-item index="hc" @click="toRouter('/hc/list')">求助中心</el-menu-item>
                 <el-menu-item index="4" @click="toRouter()">社区论坛</el-menu-item>
                 <el-menu-item index="5" @click="toRouter()">相关资讯</el-menu-item>
-                <el-menu-item index="6" @click="toRouter('/mw/index')">万人墙</el-menu-item>
+                <el-menu-item index="mw" @click="toRouter('/mw/index')">万人墙</el-menu-item>
             </div>
             <div class="profile flex">
                 <el-menu-item index="7" @click="toRouter()" v-if="isLogin">
@@ -35,9 +35,9 @@ export default {
     computed: {
         isLogin() {
             if (localStorage.getItem("userName") && localStorage.getItem("userToken")) {
-                this.$store.commit("userStatus", localStorage.getItem("userName"));
+                this.$store.dispatch("user/setUser", localStorage.getItem("userName"));
             } else {
-                this.$store.commit("userStatus", null);
+                this.$store.dispatch("user/setUser", null);
             }
             return this.$store.getters.isLogin;
         },
