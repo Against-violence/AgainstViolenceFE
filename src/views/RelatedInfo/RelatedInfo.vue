@@ -95,12 +95,8 @@
 
 <style scoped>
   @import "../../styles/penetrate.css";
-  *{
-    margin: 0;
-    padding: 0;
-  }
+  @import "../../styles/reset.css";
 .info-container {
-  /*display: flex;*/
   flex-direction: column;
   margin: 0 auto;
   width: 60%;
