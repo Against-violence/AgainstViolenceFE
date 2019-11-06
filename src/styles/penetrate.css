@@ -1,0 +1,14 @@
+/*
+穿透样式
+*/
+>>>.swiper-pagination-bullet{
+  width: 23px;
+  height: 11px;
+  border-radius: 0;
+}
+>>>.swiper-pagination-bullet-active{
+  background: #fff !important
+}
+>>>.swiper-container{
+  height: 100%;
+}

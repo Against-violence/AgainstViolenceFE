@@ -8,11 +8,17 @@ import router from './router'
 import http from './http'
 Vue.prototype.$http = http
 import store from './vuex/store'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+import 'swiper/dist/css/swiper.css'
+import '@/styles/iconfont.css'
+
 import {
   userToken
 } from "./vuex/mutations";
 
 Vue.config.productionTip = false
+Vue.use(VueAwesomeSwiper)
 
 
 Vue.mixin({

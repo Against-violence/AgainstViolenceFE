@@ -8,6 +8,8 @@ import Main from '@/views/Main/Main.vue'
 import Home from '@/views/Home/Home.vue'
 import HelpingCenter from '@/views/HelpingCenter/HelpingCenter.vue'
 import SettingCenter from '@/views/SettingCenter/SettingCenter.vue'
+import RelatedInfo from '@/views/RelatedInfo/RelatedInfo.vue'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -52,17 +54,22 @@ const router = new Router({
       }
     },
     {
+      path: '/info',
+      name: 'info',
+      component: RelatedInfo,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
       path: '/sc/home',
       name: 'scHome',
       component: SettingCenter,
       meta: {
         requireAuth: true
       }
-    }
-    ]
-  },
-
-  ]
+    }]
+  }]
 })
 router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
